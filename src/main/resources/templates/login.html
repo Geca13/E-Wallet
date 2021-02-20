@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+  body {
+  margin: 0;
+  padding: 0;
+  background: url(https://picsum.photos/2500/1500?image=1041);
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0.625rem;
+}
+
+.box h2 {
+  margin: 0 0 1.875rem;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.box .inputBox {
+  position: relative;
+}
+
+.box .inputBox input {
+  width: 100%;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.062rem;
+  margin-bottom: 1.875rem;
+  border: none;
+  border-bottom: 0.065rem solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.box .inputBox label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+h1{
+font-size: 200px;
+text-align: center;
+color: #ff00ff;
+font-family:Helvetica ;
+}
+
+.box .inputBox input:focus ~ label,
+.box .inputBox input:valid ~ label,
+.box .inputBox input:not([value=""]) ~ label {
+  top: -1.125rem;
+  left: 0;
+  color: #03a9f4;
+  font-size: 0.75rem;
+}
+
+.box input[type="submit"] {
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: #03a9f4;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  border-radius: 0.312rem;
+  font-size: 1rem;
+}
+
+.box input[type="submit"]:hover {
+  background-color: #1cb1f5;
+}
+  
+    </style>
+</head>
+
+
+<body style="background-image: linear-gradient(to right, rgb(0, 174, 255), rgb(218, 231, 161));">
+
+
+
+<div class="container">
+<!--  
+<h1>RAFMAK</h1>
+-->
+ <br>
+    
+   <div class="box">
+  <h2>Login</h2>
+   <form th:action="@{/login}" method="post">
+    
+    <div th:if="${param.error}">
+      <div class="alert alert-danger">Invalid username or
+       password.</div>
+     </div>
+     
+     <div th:if="${param.logout}">
+      <div class="alert alert-info">You have been logged out.</div>
+     </div>
+    
+    
+    
+    <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" class="form-control"
+       autofocus="autofocus" placeholder="Username" />
+     </div>
+     
+     <div class="form-group">
+      <label for="password">Password</label> 
+      <input type="password" id="password" name="password" class="form-control"
+       placeholder="Password" />
+     </div>
+     
+      <div class="form-group">
+      <div class="row">
+       <div class="col-sm-6 col-sm-offset-3">
+        <input type="submit" name="login-submit" id="login-submit"
+         class="form-control btn btn-primary" value="Log In" />
+       </div>
+      </div>
+     </div>
+     
+     </form>
+     
+     <div class="form-group">
+      <span>New user? <a href="/" th:href="@{/signUpForm}">Register
+        here</a></span>
+     </div>
+     
+     <div class="form-group">
+     <p> 
+     <a th:href="@{/forgotPassword}"> Forgot your password??? CLICK MEEE :-)</a>
+     </p>
+     
+     </div>
+</div>
+
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

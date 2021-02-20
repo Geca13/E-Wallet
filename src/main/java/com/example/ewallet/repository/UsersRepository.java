@@ -1,0 +1,23 @@
+package com.example.ewallet.repository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import com.example.ewallet.entity.Users;
+
+
+@Repository
+public interface UsersRepository extends JpaRepository<Users, Integer> {
+	
+	Users findByEmail(String email);
+	
+	Users findByToken(String token);
+	
+	Boolean existsByEmail(String email);
+	
+	@Query("SELECT u FROM Users u WHERE CONCAT(u.firstName, ' ', u.lastName, ' ', u.email) LIKE %?1%")
+	Page<Users> findBySearch(String search, Pageable pageable);
+
+}
