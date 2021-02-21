@@ -1,0 +1,122 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <a class="navbar-brand" href="#">RAFMAK</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto topnav">
+            
+             <li class="nav-item ">
+                    <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a th:href="@{/products}" class="nav-item nav-link" >Products</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/companies}" class="nav-item nav-link" > Invoice</a>
+                </li>
+                
+                <li class="nav-item">
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/administration}" class="nav-item nav-link" > Administration</a>
+               </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="nav-item nav-link" > Logout</a>
+                </li>
+              </ul>
+        </div>
+     </nav>
+
+<div class="container">
+
+<div th:if="${param.change}">
+     <div class="alert alert-info">You've successfully changed your password !!!</div>
+    </div>
+
+ <h1>User Profile</h1>
+ <br>
+ <br>
+ 
+ 
+ 
+ 
+ 
+  <table class="table table-striped"  >
+    
+      <tr>
+        <th></th>
+      <td> <img th:src="*{'data:image/png;base64,'+{user.image}}" style="width:350px"></td>   
+      </tr>
+      
+      
+      <tr>
+        <th>First Name</th>
+        <td><b th:text="${user.firstName}"></b></td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td th:text="${user.lastName}"></td>
+      </tr>
+      
+      <tr>
+        <th>Years Old</th>
+        <td th:text="${user.age}"></td>
+      </tr>
+      
+      <tr>
+        <th>Email</th>
+        <td th:text="${user.email}"></td>
+      </tr>
+      <tr>
+        <th>Password</th>
+       <td sec:authorize="isAuthenticated()"><a th:href="@{/users/profile/changePassword/{id}(id=${user.id})}">Change password</a></td>
+         
+      </tr>
+        
+      <tr >
+        <th>Employee from:</th>
+        <td th:text="${#temporals.format(user.date, 'yyyy-MM-dd')}"></td>
+      </tr>
+      
+      <tr >
+        <th>Salary</th>
+        <td th:text="${user.salary}"></td>
+      </tr>
+      
+    </table>
+ </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

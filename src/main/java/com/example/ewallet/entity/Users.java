@@ -16,6 +16,8 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.NaturalId;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,6 +45,7 @@ public class Users {
 	
 	private LocalDate joined;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 	
 	@Size(max = 45)

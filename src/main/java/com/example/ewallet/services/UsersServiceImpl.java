@@ -87,11 +87,11 @@ public class UsersServiceImpl implements UsersService {
 		    }
 		regularUser.setFirstName(user.getFirstName());
 	    regularUser.setLastName(user.getLastName());
-         
+	    regularUser.setBirthDate(user.getBirthDate());
       Role role = roleRepository.findByRole(RoleName.ROLE_USER);
         regularUser.setRoles( Collections.singleton(role));
         regularUser.setJoined(LocalDate.now());
-        regularUser.setBirthDate(LocalDate.of(year, month, day));
+   //     regularUser.setBirthDate(LocalDate.of(year, month, day));
         Integer period= Period.between(regularUser.getBirthDate(), LocalDate.now()).getYears();
 		 if (period < 18 ) {
 			 throw new InvalidAgeException("You must be older then 18 years to be able to join our site."); 
