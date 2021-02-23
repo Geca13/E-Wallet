@@ -23,9 +23,16 @@ h1 {
   color: white;
 }
 
-label {
-  color: white;
-  font-weight: bold;
+.h1 {
+  color: #0000CD;
+  font-weight: normal;
+}
+
+.p{
+ font-size: 22px;
+}
+.p1{
+ font-size: 30px;
 }
 
 .navbar-light .navbar-brand {
@@ -38,12 +45,12 @@ label {
 }
 
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
-  color: #fff;
+  color: black;
   font-weight: bold;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: #fff;
+  color: black;
   font-weight: bold;
 }
 
@@ -73,14 +80,27 @@ label {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  color: black;
+  color: grey;
   font-weight: bold;
+}
+.center {
+  position: relative;
+  text-align: center;
+  color: black;
+  margin-top: -50px;
+  font-size: 25px;
+}
+.centered {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
   
     </style>
 </head>
-<body style="background-image: url('img/register.jpg');">
+<body >
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,9 +123,11 @@ label {
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-success nav-link" href="#">Login</a>
+          <a class="btn btn-success nav-link " href="#">Login</a>
         </li>
-        
+        <li class="nav-item">
+          <a class="btn btn-danger nav-link" th:href="@{/signUpForm}" href="#">Register</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -114,82 +136,32 @@ label {
  <br>
  <br>
  
- <div class="container">
+ 
 
-  <div class="row">
+  <div class="center">
+  <img  src="img/contact.jpg" alt="Snow" style="width:100%;">
+  <div class="centered">You're not going to hit a ridiculously long phone menu when you call us. Your email isn't going to the inbox abyss, never to be seen or heard from again. At GecaPay, we provide the exceptional service we'd want to experience ourselves!
+</div>
   
-  <div class="col-md-6 ">
-
-    <div th:if="${param.success}">
-     <div class="alert alert-info">You've successfully registered !!!</div>
-    </div>
-    
-    <div th:if="${error != null}">
-     <div class="alert alert-info">[[${error}]]</div>
-    </div>
-    <br>
- <br><br>
- <br>
-        <h1>Registration form</h1>
-   <br><br>
-    <form th:action="@{/signUpForm}" th:object="${user}" method="post">
-    
-    
-    
-    
-    <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputFirstName">First Name</label>
-      <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName" placeholder="Marjan"required>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputLastName">Last Name</label>
-      <input type="text" th:field="*{lastName}" class="form-control" id="inputLastName" placeholder="Karafiloski"required>
-    </div>
   </div>
-    <hr>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail">Email:</label>
-      <input type="email" th:field="*{email}" class="form-control" id="inputEmail" placeholder="Marjan@Marjan.com"required>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword3">Password:</label>
-      <input type="password" th:field="*{password}" required autofocus="autofocus" class="form-control" id="inputPassword3" placeholder="Password">
-  <p> <small>Password must be from 6-16 characters and must contain at least : 1 number, 1 Big ,1 Small letter and special character(@,#,$,%) </small> </p>
-    </div>
-  </div>
-  <hr>
+  <br><br>
+ <div class="container">
+ <div class="row">
+  <div class="col-8">
+  <h3 class="h1">GecaPay strives to provide the best service possible with every contact!</h3>
   <br>
-   <div class="form-group"> <!-- Date input -->
-   
-        <label class="control-label" for="birthday">Enter your date of birth:</label>
-        <input  class="form-control" th:field="*{birthDate}" type="date" id="birthday" name="birthday">
-        
-      </div>
+  <p class="p">We operate in an industry built on trust. This can only be achieved through communication and experienced support – from the first contact past your ten-year anniversary.</p>
+    <p class="p1">At Choice you always talk to a human!</p>
+      <p class="p">Have questions about background screening? Our entire team receives specialized training regularly to ensure you're receiving the best information possible. From basic questions to complex compliance inquiries, we're here to help!</p>
     
-    
- 
-    <br><hr><br>
-   
-   <div class="form-group">
-      <button type="submit" class="btn btn-success">Register</button>
-     
-    </div>
-   <br>
- 
-  </form>
- 
+      <p class="p">Interested in learning more about our services? Our Account Executives take the time to discuss your existing background screening program and help you make smart decisions that best meet your needs. </p>
+  
+  </div>
+  <div class="col-4">col-4</div>
+</div>
  
  </div>
  
- 
- </div>
- 
- </div>
- 
-
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
   </script>

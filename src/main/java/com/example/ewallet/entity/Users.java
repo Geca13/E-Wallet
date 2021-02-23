@@ -45,7 +45,7 @@ public class Users {
 	
 	private LocalDate joined;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate birthDate;
 	
 	@Size(max = 45)

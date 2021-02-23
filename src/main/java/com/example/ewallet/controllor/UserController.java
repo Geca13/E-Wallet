@@ -12,8 +12,13 @@ public class UserController {
 	@GetMapping("/login")
 	public String login(Model model) {
 		
-		
-	           
-		      return "login";
+		 return "login";
 	}
+	
+	@GetMapping("/contact")
+	public String contactPage(Model model) {
+		
+		 return "contact";
+	}
+	
 }
