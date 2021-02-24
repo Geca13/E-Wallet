@@ -21,6 +21,12 @@ public class UserController {
 		 return "contact";
 	}
 	
+	@GetMapping("/how")
+	public String servicesPage(Model model) {
+		
+		 return "services";
+	}
+	
 	@GetMapping("/aboutUs")
 	public String aboutUsPage(Model model) {
 		

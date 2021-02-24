@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
+     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  
+ 
+h1 {
+  color: grey;
+  text-align:center;
+}
+
+p {
+  color: grey;
+  text-align:center;
+}
+
+.h1 {
+  color: #0000CD;
+  font-weight: normal;
+}
+
+.p{
+ font-size: 22px;
+}
+.p1{
+ font-size: 30px;
+}
+.p2{
+ font-size: 20px;
+ 
+}
+
+.navbar-light .navbar-brand {
+  color: #fff;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  background: #fff;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: .2rem 1rem;
+  font-size: 20px;
+}
+
+.nav-link.active,.nav-link:focus{
+  color: #fff;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 35px;
+  line-height: 0.3;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: grey;
+  font-weight: bold;
+}
+.center {
+  margin-top: -50px;
+  
+}
+
+  </style>
+</head>
+<body >
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/login}"href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-success nav-link " href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-danger nav-link" th:href="@{/signUpForm}" href="#">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+ <br>
+ <br>
+ 
+ 
+
+  <div class="center">
+  <img   src="img/how.jpg" alt="Snow" style="width:100%;">
+  </div>
+  <br><br>
+  <div class="container">
+  <h1>It's really simple actually :)</h1>
+  <br>
+  <h5>Well it is after you verify your account , until then there are some restrictions , but lets go step by step...</h5>
+  
+  <h1>Step 1.</h1>
+  <p>Click Register button to create your account. </p>
+  <hr>
+  <h1>Step 2.</h1>
+  <p>Complete your profile information. </p>
+  <hr>
+  <h1>Step 3.</h1>
+  <p>Fund your account.   </p>
+  <p>Click on the Deposit button enter your card details and the sum you want to add to your account. </p>
+  <p>Click FUND button. </p>
+  <hr>
+  <h1>Step 4.</h1>
+  <p >Send money wherever you want or just save them here no problem...  </p>
+  <h5 style=color:red>And here we have our limitation, until you verify your personal info you can send only 300$ a month for 6 months. The legal team says after 6 months you have to verify your account to continue to use our services. Yikes...</h5>
+  
+   <hr>
+   <br>
+<h1>Verification</h1>
+  <h5>Things you need ...</h5>
+  <ul>
+  <li>Document for identification (Id, Driver License or Passport)</li>
+  <li>Document that confirms the address in the identification document you submit(yes they must match).</li>
+  <li>Working computer camera to take a photo of you holding the identification document...</li>
+</ul> 
+<br>
+  <h5 style=color:green>Once we confirm that you are really you , hahah, your account is going to be verified and you get:</h5>
+  <ul>
+  <li>5000$ monthly transactions limit. </li>
+  <li></li>
+  <li></li>
+</ul>
+  
+  
+</div>
+
+ 
+<br><br><br>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  
+ 
+</body>
+
+</html>
