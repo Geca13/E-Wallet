@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
+     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: beige;
+  }
+  
+  .column
+  {
+      width:25%;
+      float:left;
+      padding:100px 10px;
+  }
+
+  .row:after{
+      content:"";
+      display:table;
+      clear:both;
+  }
+
+ 
+
+  @media screen and (max-width:600px)
+  {
+      .column
+      {
+          width:100%;
+          display:block;
+          margin-bottom: 20px;
+      }
+  }
+
+  .card
+  {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      max-width:300px;
+      margin:auto;
+      background-color:white;
+      text-align:center;
+      border-radius:40px;
+      padding-bottom:15px;
+  }
+
+  .title
+  {
+      color:gray;
+      font-size:18px;
+  }
+
+  button
+  {
+      border:none;
+      padding:8px;
+      display: inline-block;
+      color:white;
+      background-color:black;
+      cursor:pointer;
+      width:70%;
+      border-radius:20px;
+      font-size:18px;
+      text-align:center;
+  }
+
+  a{
+      text-decoration: none;
+      font-size:22px;
+      color:black;
+  }
+
+  a:hover,button:hover{
+      opacity: 0.6;
+  }
+  
+  img{
+  position: relative;
+  }
+  
+ 
+h1 {
+  color: grey;
+  text-align:center;
+}
+
+p {
+  color: grey;
+  text-align:center;
+}
+
+.h1 {
+  color: #0000CD;
+  font-weight: normal;
+}
+
+.p{
+ font-size: 22px;
+}
+.p1{
+ font-size: 30px;
+}
+.p2{
+ font-size: 20px;
+ 
+}
+
+.navbar-light .navbar-brand {
+  color: #fff;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: black;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  background: #fff;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: .2rem 1rem;
+  font-size: 20px;
+}
+
+.nav-link.active,.nav-link:focus{
+  color: #fff;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 35px;
+  line-height: 0.3;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: grey;
+  font-weight: bold;
+}
+.center {
+  margin-top: -50px;
+  
+}
+
+.mix{
+
+margin-top: 15px;
+}
+
+
+  </style>
+</head>
+<body >
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/login}"href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-success nav-link " href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-danger nav-link" th:href="@{/signUpForm}" href="#">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+ <br>
+ <br>
+ 
+ 
+
+  <div class="center">
+  <img   src="img/about.jpg" alt="Snow" style="width:100%;">
+  </div>
+  <br><br>
+ 
+ <h1>-Our mission-</h1>
+ <p>To provide faster and cheaper money transfer option for everyone 24/7 , from 00:00h - 23.59h. </p>
+<h1 style="margin-top:100px">FOUNDERS</h1>
+<div class="row">
+  <div class="column">
+    <div class="card mx-auto">
+      <img src="img/jas.jpg" class="rounded-circle mx-auto d-block mix" style="width:150px;height:auto;padding-top:10px">
+      
+      <h1>Marjan </h1>
+      <h1>Karafiloski</h1>
+      <p class="title">CEO & Founder</p>
+      <p>Code Academy university</p>
+      <a target="_blank" href="https://twitter.com/marjankarafilos"><i class="fa fa-twitter"></i></a>
+      <a target="_blank" href="https://www.facebook.com/marjan.karafiloski.9/"><i class="fa fa-facebook"></i></a>
+      <p><button>Email</button></p>
+    </div>
+  </div>
+​
+  <div class="column">
+    <div class="card">
+      <img src="img/stole.jpg" class="rounded-circle mx-auto d-block mix" style="width:150px;height:auto;padding-top:10px">
+      <h1>Stole</h1>
+      <h1>Lazarov</h1>
+      <p class="title">CTO & Founder</p>
+      <p>Code Academy university</p>
+      <a target="_blank" href="https://twitter.com/dziklet?lang=en"><i class="fa fa-twitter"></i></a>
+      <a target="_blank" href="https://www.facebook.com/dziklet"><i class="fa fa-facebook"></i></a>
+      <p><button>Email</button></p>
+    </div>
+  </div>
+​
+  <div class="column">
+    <div class="card">
+      <img src="img/risto.jpg" class="rounded-circle mx-auto d-block mix" style="width:150px;height:auto;padding-top:10px">
+      <h1>Risto</h1>
+      <h1>Kochevski</h1>
+      <p class="title">COO & Founder</p>
+      <p>Code Academy university</p>
+      <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+      <a target="_blank" href="https://www.facebook.com/ristokochevski"><i class="fa fa-facebook"></i></a>
+      <p><button>Email</button></p>
+    </div>
+  </div>
+​
+  <div class="column">
+    <div class="card">
+      <img src="img/daniel.jpg" class="rounded-circle mx-auto d-block mix" style="width:150px;height:auto;padding-top:10px">
+      <h1>Daniel</h1>
+      <h1>Pavlovski</h1>
+      <p class="title">CCO & Founder</p>
+      <p>Code Academy university</p>
+      <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+      <a target="_blank" href="https://www.facebook.com/daniel.c.pavlovski"><i class="fa fa-facebook"></i></a>
+      <p><button>Email</button></p>
+    </div>
+  </div>
+  
+  </div>
+
+ 
+  <div class="row">
+  <div class="col-sm"></div>
+  <div class="col-sm">
+  
+  <p>In 2021 when we finished the Java Academy we didn't know what to do , we couldn't find a place to work because every firm we contacted asked for at least 2 years experience
+   and before we lost all hope we decided to use them in our advantage. Every tech company in our country had problems how to apply to work in a projects offered in the west countries.
+    Almost all of them used PayPal as payment processor and we just don't have it and to use banks was horible , a lot of taxes so it wasn't worthed . That's why we decided to make our own PayPal.
+    Yeah we worked day and night almost for 6 months adjusting our codes and hired a law firm to handle the Legal stuff . 6 months later GecaPay was launched and the rest is history :)  </p>
+  
+  
+  </div>
+  <div class="col-sm"></div>
+</div>
+ 
+<br><br><br>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  
+ 
+</body>
+
+</html>
