@@ -29,7 +29,7 @@ public class UsersDetails implements UserDetails{
 	@Override
 	public String getUsername() {
 		
-		return users.getEmail();
+		return users.getFirstName() + " " + users.getLastName();
 	}
 
 	@Override

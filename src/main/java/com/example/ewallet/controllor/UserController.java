@@ -32,4 +32,10 @@ public class UserController {
 		
 		 return "aboutUs";
 	}
+	
+	@GetMapping("/")
+	public String dashboard(Model model) {
+		
+		 return "index";
+	}
 }
