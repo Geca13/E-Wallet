@@ -5,13 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-    
-  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"> 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
-     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-     
   <style>
   
   body {
@@ -104,12 +100,149 @@ h1 {
 
 .vl {
   border-left: 1px solid lightgrey;
-  height: 380px;
+  height: 560px;
   position: absolute;
   left: 63%;
   margin-left: -3px;
   top: 60;
 }
+
+
+
+ body {
+     background-color: #f9f9fa
+ }
+
+ .flex {
+     -webkit-box-flex: 1;
+     -ms-flex: 1 1 auto;
+     flex: 1 1 auto
+ }
+
+ @media (max-width:991.98px) {
+     .padding {
+         padding: 1.5rem
+     }
+ }
+
+ @media (max-width:767.98px) {
+     .padding {
+         padding: 1rem
+     }
+ }
+
+ .padding {
+     padding: 3rem
+ }
+
+ 
+
+ .btn.btn-social-icon {
+     width: 50px;
+     height: 50px;
+     padding: 0
+ }
+
+ .template-demo>.btn {
+     margin-right: 0.5rem !important
+ }
+
+ .template-demo {
+     margin-top: 0.5rem !important
+ }
+
+ .btn.btn-rounded {
+     border-radius: 50px
+ }
+
+ .btn-outline-facebook {
+     border: 1px solid #3b579d;
+     color: #3b579d
+ }
+
+ .btn-outline-facebook:hover {
+     background: #3b579d;
+     color: #ffffff
+ }
+
+ .btn-outline-youtube {
+     border: 1px solid #e52d27;
+     color: #e52d27
+ }
+
+ .btn-outline-twitter {
+     border: 1px solid #2caae1;
+     color: #2caae1
+ }
+
+ .btn-outline-linkedin {
+     border: 1px solid #0177b5;
+     color: #0177b5
+ }
+
+
+ .btn-outline-twitter:hover {
+     background: #2caae1;
+     color: #ffffff
+ }
+
+ .btn-outline-linkedin:hover {
+     background: #0177b5;
+     color: #ffffff
+ }
+
+ .btn-outline-youtube:hover {
+     background: #e52d27;
+     color: #ffffff
+ }
+
+
+ .btn-facebook {
+     background: #3b579d;
+     color: #ffffff
+ }
+
+ .btn-youtube {
+     background: #e52d27;
+     color: #ffffff
+ }
+
+ .btn-twitter {
+     background: #2caae1;
+     color: #ffffff
+ }
+
+ .btn-linkedin {
+     background: #0177b5;
+     color: #ffffff
+ }
+
+
+ .btn-facebook:hover,
+ .btn-facebook:focus {
+     background: #2d4278;
+     color: #ffffff
+ }
+
+ .btn-youtube:hover,
+ .btn-youtube:focus {
+     background: #c21d17;
+     color: #ffffff
+ }
+
+ .btn-twitter:hover,
+ .btn-twitter:focus {
+     background: #1b8dbf;
+     color: #ffffff
+ }
+
+
+ .btn-linkedin:hover,
+ .btn-linkedin:focus {
+     background: #015682;
+     color: #ffffff
+ }
+
 
   </style>
 </head>
@@ -130,10 +263,10 @@ h1 {
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
+          <a class="nav-link" th:href="@{/how}"  href="#">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="#" th:href="@{/contact}">Contact</a>
         </li>
         <li class="nav-item">
           <a class="btn btn-success nav-link " href="#">Login</a>
@@ -184,7 +317,8 @@ h1 {
   <p>Phone: <a href="tel:+38976272926">+38976-272-926</a></p>
   <p>Email: <a  href="mailto:someone@yoursite.com">info@gecapay.com</a></p>
   <hr>
-  
+  <p class="p1">Social Media:</p>
+  <div class="template-demo"> <button type="button" class="btn btn-social-icon btn-facebook btn-rounded"><i class="fa fa-facebook"></i></button> <button type="button" class="btn btn-social-icon btn-youtube btn-rounded"><i class="fa fa-youtube"></i></button> <button type="button" class="btn btn-social-icon btn-twitter btn-rounded"><i class="fa fa-twitter"></i></button>  <button type="button" class="btn btn-social-icon btn-linkedin btn-rounded"><i class="fa fa-linkedin"></i></button>  </div>
   
   </div>
  </div>

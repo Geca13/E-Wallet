@@ -14,6 +14,10 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
   
+  h3 {
+  color: grey;
+  text-align:center;
+}
  
 h1 {
   color: grey;
@@ -94,6 +98,12 @@ p {
   
 }
 
+td{
+
+font-weight: bold;
+text-margin-top:-20px;
+}
+
   </style>
 </head>
 <body >
@@ -109,14 +119,14 @@ p {
           <a class="nav-link" th:href="@{/login}"href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="#" th:href="@{/aboutUs}">About</a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
+          <a class="nav-link" th:href="@{/how}"  href="#">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="#" th:href="@{/contact}">Contact</a>
         </li>
         <li class="nav-item">
           <a class="btn btn-success nav-link " href="#">Login</a>
@@ -161,7 +171,7 @@ p {
    <hr>
    <br>
 <h1>Verification</h1>
-  <h5>Things you need ...</h5>
+  <h5>Things you'll need ...</h5>
   <ul>
   <li>Document for identification (Id, Driver License or Passport)</li>
   <li>Document that confirms the address in the identification document you submit(yes they must match).</li>
@@ -171,11 +181,155 @@ p {
   <h5 style=color:green>Once we confirm that you are really you , hahah, your account is going to be verified and you get:</h5>
   <ul>
   <li>5000$ monthly transactions limit. </li>
-  <li></li>
-  <li></li>
+  <li>Option to order GecaPay Debit Card.</li>
+  <li>Option to make withdrawl directly to your bank account(I don't really know you you will need this if you have a GecaPay Card, but still you have it...).</li>
+  <li>Option GecaPay Virtual Debit Card to be created for online shopping until your Plastic GecaPay Debit Card arrive on your address.</li>
 </ul>
+  <hr>
+  <br>
+  <h1>Fees</h1>
+  <br>
+  <h3>Deposit and Withdrawls</h3>
+  <br>
   
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Option</th>
+      <th scope="col">Deposit</th>
+      <th scope="col">Deposit period </th>
+      <th scope="col">Withdrawal </th>
+      <th scope="col">Withdrawal Period </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>  <img   src="img/mc.png" alt="Snow" ></td>
+      <td>2.0 %</td>
+      <td>Instant</td>
+      <td>6.5 %</td>
+      <td>5-7 days</td>
+      
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>  <img src="img/visa.png" alt="Snow" ></td>
+      <td>2.0 %</td>
+      <td>Instant</td>
+      <td>6.5 %</td>
+      <td>5-7 days</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td><img src="img/ns.jpg" alt="Snow" ></td>
+      <td>3.0 %</td>
+      <td>1-2 Hrs</td>
+      <td>5.0 %</td>
+      <td>2-3 Hrs</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td><img src="img/bank.png" alt="Snow" ></td>
+      <td>3.2 %</td>
+      <td>2-3 days</td>
+      <td>3.5 $ + 4.5 %</td>
+      <td>5-10 days</td>
+    </tr>
+  </tbody>
+</table>
+  <hr>
+  <br>
+  <h3>GecaPay Plastic Debit card</h3>
+   <br>
+   
+   
+    <table class="table table-striped" th:object="${product}">
   
+      
+      <tr>
+        <th>1st order price:</th>
+        <td>FREE </td>
+      </tr>
+      <tr>
+        <th>Replacement</th>
+        <td >13.99$</td>
+      </tr>
+      <tr>
+        <th>Shopping in same currency</th>
+        <td>No conversion fee</td>
+      </tr>
+      <tr>
+        <th>Shopping in different currency</th>
+        <td>2.25% conversion fee</td>
+      </tr>
+      <tr>
+        <th>ATM</th>
+        <td >1.99 $ + 1.99 % (additional fees may apply depending on the Bank and currency)</td>
+      </tr>
+      <tr>
+        <th>Second Card</th>
+        <td>Shipping only 9.99$</td>
+      </tr>
+      
+    </table>
+   
+   <hr>
+  <br>
+  <h3>GecaPay to GecaPay money transfer</h3>
+   <br>
+    <table class="table table-striped" th:object="${product}">
+  
+      
+      <tr>
+        <th>0 $ - 250 $</th>
+        <td>1.99 % </td>
+      </tr>
+      <tr>
+        <th>250.01 $ - 999.99 $</th>
+        <td >1.39 %</td>
+      </tr>
+      <tr>
+        <th>1000 $ - 2500 $</th>
+        <td>0.99 %</td>
+      </tr>
+      <tr>
+        <th>2500.01 $ - 5000 $</th>
+        <td>0.79 %</td>
+      </tr>
+      <tr>
+        <th>ATM</th>
+        <td >1.99 $ + 1.99 % (additional fees may apply depending on the Bank and currency)</td>
+      </tr>
+      <tr>
+        <th>Second Card</th>
+        <td>Shipping only 9.99$</td>
+      </tr>
+      
+    </table>
+    
+      <hr>
+  <br>
+  <h3>Currency Exchange</h3>
+   <br>
+    <table class="table table-striped" th:object="${product}">
+  
+      
+      <tr>
+        <th>MKD to USD & USD to MKD</th>
+        <td>1.99 % </td>
+      </tr>
+      <tr>
+        <th>EUR to USD & USD to EUR</th>
+        <td >1.49 %</td>
+      </tr>
+      <tr>
+        <th>EUR to MKD & MKD to EUR</th>
+        <td>0.99 %</td>
+      </tr>
+     
+    </table>
 </div>
 
  
