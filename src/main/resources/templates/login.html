@@ -10,6 +10,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <style>
   
+  
+  
 .carousel-item {
   height: 100vh;
   min-height: 300px;
@@ -18,6 +20,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  
 }
 .carousel-caption {
   bottom: 270px;
@@ -101,6 +104,15 @@ p {
   font-weight: bold;
 }
 
+  #containerIntro h3,
+#containerIntro p {
+    display: inline;
+    vertical-align: top;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+}
+
 
   
     </style>
@@ -110,13 +122,98 @@ p {
 <body >
 
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Geca</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" href="#">GecaPay</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/login}"href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" th:href="@{/aboutUs}">About</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/how}"  href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" th:href="@{/contact}">Contact</a>
+        </li>
+        <li class="nav-item">
+              <a class="nav-link btn btn-primary text-white" type="button" href="#" data-toggle="modal" data-target="#myModal">Sign In</a>                  
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-danger nav-link" th:href="@{/signUpForm}" href="#">Register</a>
+        </li>
+      </ul>
+        </div>
+    
+           <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Customer Sign In</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                   <form th:action="@{/login}" method="post">
+    
+    <div th:if="${param.error}">
+      <div class="alert alert-danger">Invalid username or
+       password.</div>
+     </div>
+     
+     <div th:if="${param.logout}">
+      <div class="alert alert-info">You have been logged out.</div>
+     </div>
+    
+    <div class="form-group">
+     <label for="username">Username</label>
+     <input type="text" id="username" name="username" class="form-control"
+       autofocus="autofocus" placeholder="Username" required/>
+    </div>
+     
+    <div class="form-group">
+     <label for="password">Password</label> 
+     <input type="password" id="password" name="password" class="form-control"
+       placeholder="Password" required/>
+    </div>
+     
+      <div class="form-group">
+      <div class="row">
+       <div class="col-sm-6 col-sm-offset-3">
+        <input type="submit" name="login-submit" id="login-submit"
+         class="form-control btn btn-primary" value="Log In" />
+       </div>
+      </div>
+     </div>
+     
+     </form>
+                </div>
+                <div class="form-group">
+      <span>New user? <a href="/" th:href="@{/signUpForm}">Register
+        here</a></span>
+     </div>
+     
+     <div class="form-group">
+     <p> 
+     <a th:href="@{/forgotPassword}">Did you forget your password??? CLICK MEEE :-)</a>
+     </p>
+     
+     </div>
+      </div>
+        </div>
+    </div>
+<!--  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
@@ -140,7 +237,9 @@ p {
         </li>
       </ul>
     </div>
-  </div>
+    -->
+    
+  
 </nav>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -197,18 +296,8 @@ p {
   </a>
 </div>
 
-
-
-
- <br>
+ 
     
-  
-
-
-
-
-
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
   </script>
