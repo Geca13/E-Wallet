@@ -43,6 +43,12 @@ public class Users {
 	
 	private String lastName;
 	
+	private Double mkdBalance;
+	
+	private Double usdBalance;
+	
+	private Double eurBalance;
+	
 	private LocalDate joined;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")

@@ -91,6 +91,9 @@ public class UsersServiceImpl implements UsersService {
       Role role = roleRepository.findByRole(RoleName.ROLE_USER);
         regularUser.setRoles( Collections.singleton(role));
         regularUser.setJoined(LocalDate.now());
+        regularUser.setEurBalance(0.00);
+        regularUser.setUsdBalance(0.00);
+        regularUser.setMkdBalance(0.00);
    //     regularUser.setBirthDate(LocalDate.of(year, month, day));
         Integer period= Period.between(regularUser.getBirthDate(), LocalDate.now()).getYears();
 		 if (period < 18 ) {

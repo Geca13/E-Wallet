@@ -1,13 +1,24 @@
 package com.example.ewallet.controllor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.ewallet.entity.Users;
+import com.example.ewallet.repository.UsersRepository;
+import com.example.ewallet.services.UsersDetails;
+
+
 
 
 
 @Controller
 public class UserController {
+	
+	@Autowired
+	UsersRepository userRepository;
 
 	@GetMapping("/login")
 	public String login(Model model) {
@@ -34,8 +45,11 @@ public class UserController {
 	}
 	
 	@GetMapping("/")
-	public String dashboard(Model model) {
+	public String dashboard(Model model,@AuthenticationPrincipal UsersDetails userD) {
 		
+		String userEmail = userD.getUsername();
+        Users user = userRepository.findByEmail(userEmail);
+        model.addAttribute("user", user);
 		 return "index";
 	}
 }
