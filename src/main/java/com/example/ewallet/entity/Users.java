@@ -2,6 +2,7 @@ package com.example.ewallet.entity;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -52,6 +53,9 @@ public class Users {
 	private LocalDate joined;
 	
 	private Boolean verified;
+	
+	@ManyToMany
+	private List<CreditCard> card;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate birthDate;

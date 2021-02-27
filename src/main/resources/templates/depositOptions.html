@@ -162,6 +162,10 @@ div.card {
   margin-left:60px;
 }
 
+img{
+border-radius: 50%;
+}
+
 h4{
   font-weight: bold;
    margin-left:60px;
@@ -214,14 +218,16 @@ h4{
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
+            
+                <li>
+                    <a href="#" th:href="@{/}"><i class="fa fa-fw fa-arrow-circle-up"></i> DASHBOARD</a>
+                    
+                </li>
                 <li>
                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-arrow-circle-down"></i> WITHDRAW</a>
 
                 </li>
-                <li>
-                    <a href="#" th:href="@{/deposite}"><i class="fa fa-fw fa-arrow-circle-up"></i> DEPOSIT</a>
-                    
-                </li>
+                
                 <li>
                     <a href="investigaciones/favoritas"><i class="fa fa-fw fa-paper-plane"></i> TRANSFER</a>
                 </li>
@@ -261,46 +267,71 @@ h4{
         <!-- /.container-fluid -->
         
         <div class="container">
-        <h4>Available Balances:</h4>
+        <h4>Options:</h4>
   <div class="row">
     <div class="col-sm">
-       <div class="card" style="width: 25rem; height: 10rem;">
+       <div class="card" style="width: 25rem; height: 50rem;">
   <div class="card-body">
-    <h5 class="card-title"style="font-size: 2.50em;" ><b th:text="${user.mkdBalance}"></b><b>MKD</b></h5>
-   <img src="img/mkd.webp" width="35px" style=margin-top:-6px; alt="Macedonian Flag">
-   
-  </div>
-</div>
-    </div>
-    <div class="col-sm">
-     <div class="card" style="width: 25rem;height: 10rem;">
-  <div class="card-body">
-    <h5 class="card-title" style="font-size: 2.50em;"><b th:text="${user.eurBalance}"></b><i class="fa fa-eur"  aria-hidden="true"></i></h5>
-    <img src="img/eur.webp" alt="European flag">
-   
-  </div>
-</div>
-    </div>
-    <div class="col-sm">
-      <div class="card" style="width: 25rem;height: 10rem;">
-  <div class="card-body">
-    <h5 class="card-title " style="font-size: 2.50em;" ><b th:text="${user.usdBalance}"></b><i class="fa fa-usd"  aria-hidden="true"></i></h5>
-<img src="img/usa.webp" alt="American flag">  
-  </div>
-</div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-<div class="card w-75" style="height: 50rem; margin-top:60px; margin-left:145px" >
-  <div class="card-body">
-    <h3 class="card-title">Recent Transactions</h3>
     
-    <a href="#" class="btn btn-primary">More...</a>
+   <img src="img/cards.png" width="200px" height= "100px"  alt="Macedonian Flag">
+   
+       <h3 style="margin-top:50px" >Credit or Debit Card</h3>
+       
+       <p class="card-text" style="margin-top:30px">The fastest and easiest way for anyone to deposit to it's account.</p>
+       <p class="card-text" style="margin-top:30px">The deposits are made in MKD.</p>
+       
+   
+   <h5 style="margin-top:50px">FEES:</h5>
+          <p class="card-text">2.0 %</p>
+   
+   <a class="btn btn-primary" style="margin-top:46px" href="#" th:href="@{/allCardsByUser}" role="button">Deposit now</a>
+   
   </div>
 </div>
+    </div>
+    <div class="col-sm">
+     <div class="card" style="width: 25rem;height: 50rem;">
+  <div class="card-body">
+    <img src="img/neteller.png" width="200px" alt="European flag">
+    
+    <h3 style="margin-top:50px" >Neteller</h3>
+       
+       <p class="card-text" style="margin-top:30px">Your deposit will be accepted only if you sent it in USD, otherwise it will be rejected.</p>
+       
+       
+   
+   <h5 style="margin-top:72px">FEES:</h5>
+          <p class="card-text">3.0 %</p>
+   
+   <a class="btn btn-primary" style="margin-top:50px" href="#" role="button">Deposit now</a>
+   
+  </div>
+</div>
+    </div>
+    
+    <div class="col-sm">
+     <div class="card" style="width: 25rem;height: 50rem;">
+  <div class="card-body">
+    <img src="img/skrill.png" width="200px" alt="European flag">
+    
+    <h3 style="margin-top:50px" >Skrill</h3>
+       
+       <p class="card-text" style="margin-top:30px">Your deposit will be accepted only if you sent it in EUR, otherwise it will be rejected.</p>
+       
+       <h5 style="margin-top:72px">FEES:</h5>
+          <p class="card-text">3.0 %</p>
+   
+   <a class="btn btn-primary" style="margin-top:46px" href="#" role="button">Deposit now</a>
+   
+  </div>
+</div>
+    </div>
+   
+  </div>
+</div>
+</div>
+
+
     
     
     <!-- /#page-wrapper -->
