@@ -1,6 +1,5 @@
 package com.example.ewallet;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,10 +36,10 @@ public class MainController {
 	}
 	
 	@PostMapping
-	public String registerAdmin(@ModelAttribute("user") Users user, Model model, @Param(value = "day")Integer day , @Param(value = "month")Integer month , @Param(value = "year")Integer year) {
+	public String registerAdmin(@ModelAttribute("user") Users user, Model model) {
 		
 		try {
-			usersService.saveUser(user, day, month, year);
+			usersService.saveUser(user);
 		} catch (InvalidPasswordException | userWithThatEmailAlreadyExistsException | InvalidAgeException e) {
 			model.addAttribute("error", e.getMessage());
 			return "signUpForm";

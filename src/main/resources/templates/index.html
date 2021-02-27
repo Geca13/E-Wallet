@@ -167,6 +167,11 @@ h4{
    margin-left:60px;
    margin-bottom:15px;
   }
+  
+  .verified {
+  color:red;
+  margin-top:20px;
+  }
 
   </style>
 </head>
@@ -191,6 +196,10 @@ h4{
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
             
+            <li class="verified">
+            <span  th:unless="${user.verified}">Account Not Verified</span>
+            <span  th:if="${user.verified}">Account Verified</span>
+            </li>
                      
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" sec:authentication="principal.username"> User <b class="fa fa-angle-down"></b></a>
@@ -222,7 +231,7 @@ h4{
                 <li>
                     <a href="faq"><i class="fa fa-fw fa fa-life-ring"></i> SUPPORT</a>
                 </li>
-                <li>
+                <li th:unless="${user.verified}">
                     <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> VERIFICATION</a>
                 </li>
                 <li>

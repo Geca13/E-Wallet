@@ -73,7 +73,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 	
 	@Override
-	public Users saveUser(Users user, @Param(value = "day")Integer day , @Param(value = "month")Integer month , @Param(value = "year")Integer year) throws InvalidPasswordException, userWithThatEmailAlreadyExistsException, InvalidAgeException {
+	public Users saveUser(Users user) throws InvalidPasswordException, userWithThatEmailAlreadyExistsException, InvalidAgeException {
 		
 	  UsersServiceImpl validator = new UsersServiceImpl();
 	  Users regularUser = new Users();
@@ -94,7 +94,8 @@ public class UsersServiceImpl implements UsersService {
         regularUser.setEurBalance(0.00);
         regularUser.setUsdBalance(0.00);
         regularUser.setMkdBalance(0.00);
-   //     regularUser.setBirthDate(LocalDate.of(year, month, day));
+        regularUser.setVerified(false);
+   
         Integer period= Period.between(regularUser.getBirthDate(), LocalDate.now()).getYears();
 		 if (period < 18 ) {
 			 throw new InvalidAgeException("You must be older then 18 years to be able to join our site."); 

@@ -10,7 +10,7 @@ public interface UsersService extends UserDetailsService {
 	
 	Users saveAdmin(Users user) throws InvalidPasswordException, userWithThatEmailAlreadyExistsException;
 	
-	public Users saveUser(Users user, @Param(value = "day")Integer day , @Param(value = "month")Integer month , @Param(value = "year")Integer year) throws InvalidPasswordException, userWithThatEmailAlreadyExistsException, InvalidAgeException;
+	public Users saveUser(Users user) throws InvalidPasswordException, userWithThatEmailAlreadyExistsException, InvalidAgeException;
 	
 	public Page<Users> findPagina(Integer pageNumber, Integer pageSize,String sortField, String sortDirection, String search);
 
