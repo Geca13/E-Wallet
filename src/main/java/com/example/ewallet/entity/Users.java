@@ -51,6 +51,8 @@ public class Users {
 	
 	private LocalDate joined;
 	
+	private Boolean verified;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate birthDate;
 	

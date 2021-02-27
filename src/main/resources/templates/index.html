@@ -158,7 +158,15 @@
 div.card {
   box-shadow: 10px 10px 5px grey;
   text-align: center;
+  border-radius: 5%;
+  margin-left:60px;
 }
+
+h4{
+  font-weight: bold;
+   margin-left:60px;
+   margin-bottom:15px;
+  }
 
   </style>
 </head>
@@ -232,7 +240,7 @@ div.card {
                 <div class="col-sm-12 col-md-12 well" id="content">
            
            
-           <h4><b th:text="${user.mkdBalance}"></b></h4>
+           <h4>Momentalna kursna lista da se izvede nekako</h4>
            
      
   
@@ -244,12 +252,13 @@ div.card {
         <!-- /.container-fluid -->
         
         <div class="container">
+        <h4>Available Balances:</h4>
   <div class="row">
     <div class="col-sm">
-       <div class="card " style="width: 25rem; height: 10rem;">
+       <div class="card" style="width: 25rem; height: 10rem;">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <h5 class="card-title"style="font-size: 2.50em;" ><b th:text="${user.mkdBalance}"></b><b>MKD</b></h5>
+   <img src="img/mkd.webp" width="35px" style=margin-top:-6px; alt="Macedonian Flag">
    
   </div>
 </div>
@@ -257,8 +266,8 @@ div.card {
     <div class="col-sm">
      <div class="card" style="width: 25rem;height: 10rem;">
   <div class="card-body">
-    <h5 class="card-title"><i class="fa fa-eur" style="font-size: 2.50em;" aria-hidden="true"></i></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <h5 class="card-title" style="font-size: 2.50em;"><b th:text="${user.eurBalance}"></b><i class="fa fa-eur"  aria-hidden="true"></i></h5>
+    <img src="img/eur.webp" alt="European flag">
    
   </div>
 </div>
@@ -266,17 +275,23 @@ div.card {
     <div class="col-sm">
       <div class="card" style="width: 25rem;height: 10rem;">
   <div class="card-body">
-    <h5 class="card-title"><i class="fa fa-usd" style="font-size: 2.50em;" aria-hidden="true"></i></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <h5 class="card-title " style="font-size: 2.50em;" ><b th:text="${user.usdBalance}"></b><i class="fa fa-usd"  aria-hidden="true"></i></h5>
+<img src="img/usa.webp" alt="American flag">  
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="card w-75" style="height: 50rem; margin-top:60px; margin-left:145px" >
+  <div class="card-body">
+    <h3 class="card-title">Recent Transactions</h3>
     
+    <a href="#" class="btn btn-primary">More...</a>
   </div>
 </div>
-    </div>
-  </div>
-</div>
-        
-       
-    </div>
     
     
     <!-- /#page-wrapper -->
