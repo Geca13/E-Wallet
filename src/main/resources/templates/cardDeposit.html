@@ -461,9 +461,7 @@ a:hover{
 </head>
 <body >
 
-<div th:if="${message != null}">
-     <div class="alert alert-info">[[${message}]]</div>
-    </div>
+
 <div id="throbber" style="display:none; min-height:120px;"></div>
 <div id="noty-holder"></div>
 <div id="wrapper">
@@ -485,15 +483,15 @@ a:hover{
         <ul class="nav navbar-right top-nav">
             
             <li class="verified">
-            <span  th:unless="${user.verified}">Account Not Verified</span>
-            <span  th:if="${user.verified}">Account Verified</span>
+            <span  th:unless="${user?.verified}">Account Not Verified</span>
+            <span  th:if="${user?.verified}">Account Verified</span>
             </li>
                      
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" sec:authentication="principal.username"> User <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-item nav-link" th:href="@{/profile}" ><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
-                    <li><a th:href="@{/users/profile/changePassword/{id}(id=${user.id})}"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
+                    <li><a th:href="@{/users/profile/changePassword/{id}(id=${user?.id})}"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
                     <li class="divider"></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="nav-item nav-link" >Logout</a></li>
                 </ul>
@@ -519,7 +517,7 @@ a:hover{
                 <li>
                     <a href="faq"><i class="fa fa-fw fa fa-life-ring"></i> SUPPORT</a>
                 </li>
-                <li th:unless="${user.verified}">
+                <li th:unless="${user?.verified}">
                     <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> VERIFICATION</a>
                 </li>
                 <li>
@@ -549,6 +547,9 @@ a:hover{
         <!-- /.container-fluid -->
         
         <div class="container">
+        <div th:if="${message != null}">
+     <div class="alert alert-warning">[[${message}]]</div>
+    </div>
         
         <h4>You must confirm the expiration date and and cvv number</h4>
         
@@ -561,7 +562,7 @@ a:hover{
         
         
 						
-		<form class="payment-card" th:action="@{/cardDeposite/{id}(id=${card.id})}" th:object="${transaction}" method="post" >
+		<form class="payment-card" th:action="@{/cardDeposite/{id}(id=${card?.id})}" th:object="${transaction}" method="post" >
 		
 		<div class="bank-card__inner" style=width:100px>
 		<label class="bank-card__label bank-card__label_holder " >
@@ -575,12 +576,12 @@ a:hover{
 					<div class="bank-card__inner">
 						
 						<input type="text" class="bank-card__field "  readonly>
-							<p th:text="${card.cardHolderName}"></p>
+							<p th:text="${card?.cardHolderName}"></p>
 					</div>
 					<div class="bank-card__inner">
 						
 						<input type="text" class="bank-card__field vopole" readonly>
-					<p th:text="${#strings.substring(card.cardNumber,0,4) + ' ' + #strings.substring(card.cardNumber,4,8)+ ' ' + #strings.substring(card.cardNumber,8,12)+ ' ' + #strings.substring(card.cardNumber,12,16)}"></p>
+					<p th:text="${#strings.substring(card?.cardNumber,0,4) + ' ' + #strings.substring(card?.cardNumber,4,8)+ ' ' + #strings.substring(card?.cardNumber,8,12)+ ' ' + #strings.substring(card?.cardNumber,12,16)}"></p>
 					
 					</div>
 					<div class="bank-card__inner">

@@ -56,10 +56,12 @@ public class TransactionsController {
 			services.newDeposit(user, id, transaction, month, year, cvv);
 		} catch (InvalidCardException e) {
 			model.addAttribute("message", e.getMessage());
+	        model.addAttribute("user", user);
+	        model.addAttribute("card", cardRepository.findById(id).get());
+			return "cardDeposit";
 		}
 		
-		user.setMkdBalance(user.getMkdBalance()+transaction.getAmount());
-		userRepository.save(user);
+		
 		return "redirect:/";
 	}
 	

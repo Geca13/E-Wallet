@@ -30,19 +30,20 @@ public class TransactionServices {
 	
 	public Transaction newDeposit ( Users user,@PathVariable("id")Integer id, @ModelAttribute("transaction")Transaction transaction,
 			  String month, String year, String cvv) throws InvalidCardException {
-		
+		Transaction newTransaction = new Transaction();
 		CreditCard card = cardRepository.findById(id).get();
 		if(!card.getMonth().equals(month) || !card.getYear().equals(year) || !card.getCvv().equals(cvv)) {
 			
 			throw new InvalidCardException("Please check your card details the ones you entered are incorect");
 		}
 		
-		Transaction newTransaction = new Transaction();
+		
 		newTransaction.setDescription("Deposit with Credit/Debit card ending with *"+ card.getCardNumber().substring(12));
 		newTransaction.setAmount(transaction.getAmount());
 		newTransaction.setUser(user);
 		newTransaction.setTime(LocalDateTime.now());
-	
+		user.setMkdBalance(user.getMkdBalance()+transaction.getAmount());
+		userRepository.save(user);
 		return transactionRepository.save(newTransaction);
 		
 	}
