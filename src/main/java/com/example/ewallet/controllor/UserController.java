@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.ewallet.entity.CreditCard;
@@ -85,7 +86,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("card", new CreditCard());
 		
-		return "addNewCard";
+	 return "addNewCard";
 	}
 	
 	@PostMapping("/addNewCCard")
@@ -104,6 +105,9 @@ public class UserController {
         userRepository.save(user);
 		return "redirect:/allCardsByUser";
 	}
+	
+	
+	
 	
 	
 	
