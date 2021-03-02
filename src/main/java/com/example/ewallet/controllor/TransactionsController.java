@@ -65,5 +65,22 @@ public class TransactionsController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/transferPage")
+	public String getTransferPage(Model model ,@AuthenticationPrincipal UsersDetails userD) {
+		
+		String userEmail = userD.getUsername();
+        Users user = userRepository.findByEmail(userEmail);
+        model.addAttribute("user", user);
+        
+		return "transfer";
+	}
+	
+	@GetMapping("/findRecepient")
+	public String findRecipientByEmail(@Param(value = "email")String email) {
+		
+		Users recipient = userRepository.findByEmail(email);
+        
+		return "transfer";
+	}
 
 }
