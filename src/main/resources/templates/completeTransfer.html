@@ -692,10 +692,24 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
           
         
         
+   <form action="#" th:action="@{/complete/{id}(id=${user.id})}" th:object="${transaction}" method="get">   
+  <h1>Send To:</h1>
+  
+  <table class="table table-striped"  >
+       
+      <tr>
+        <th>First Name</th>
+        <td><b th:text="${recipient.firstName}"></b></td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td th:text="${recipient.lastName}"></td>
+      </tr>
       
-  <h1>Enter recipient email</h1>
-<form>
-  <input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+       </table>
+
+
+  <input type="text" th:field="*{amount}" class="question" id="nme" required autocomplete="off" />
   <label for="nme"><span></span></label>
   <input type="submit" value="Complete" />
 </form>

@@ -694,8 +694,8 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
         
       
   <h1>Enter recipient email</h1>
-<form>
-  <input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+<form action="#" th:action="@{/findRecepient}" method="get">
+  <input type="text" name="email" class="question" id="nme" required autocomplete="off" />
   <label for="nme"><span></span></label>
   <input type="submit" value="Find!" />
 </form>
