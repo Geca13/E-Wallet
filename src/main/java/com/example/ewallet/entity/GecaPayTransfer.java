@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,9 +16,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Transaction {
+@AllArgsConstructor
+public class GecaPayTransfer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +28,12 @@ public class Transaction {
 	
 	private String description;
 	
-	@ManyToOne
-	private Users user;
-	
 	private LocalDateTime time;
+	
+	@ManyToOne
+	private Users from;
+	
+	@ManyToOne
+	private Users to;
 
 }

@@ -684,7 +684,12 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
         <div th:if="${message != null}">
      <div class="alert alert-warning">[[${message}]]</div>
     </div>
-        
+        <div th:if="${param.tooHighAmount}">
+      <div class="alert alert-info">You don't have that much funds on your account.</div>
+     </div>
+     <div th:if="${param.tooSmallAmount}">
+      <div class="alert alert-info">The minimum for transfer is 5$</div>
+     </div>
         
         
        <div class="card w-75" style="height: 40rem; margin-top:60px; margin-left:1px" >
@@ -692,24 +697,15 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
           
         
         
-   <form action="#" th:action="@{/complete/{id}(id=${user.id})}" th:object="${transaction}" method="get">   
+    
   <h1>Send To:</h1>
   
-  <table class="table table-striped"  >
-       
-      <tr>
-        <th>First Name</th>
-        <td><b th:text="${recipient.firstName}"></b></td>
-      </tr>
-      <tr>
-        <th>Last Name</th>
-        <td th:text="${recipient.lastName}"></td>
-      </tr>
-      
-       </table>
+  
+        <h3><b th:text="${recipient.firstName + ' ' + recipient.lastName + ' - ' + recipient.email}"></b></h3>
+     
+<form action="#" th:action="@{/complete/{id}(id=${recipient.id})}" th:object="${transfer}" method="post">  
 
-
-  <input type="text" th:field="*{amount}" class="question" id="nme" required autocomplete="off" />
+  <input type="text" th:field="*{amount}" class="question" id="nme" required placeholder="Enter Amount Here" />
   <label for="nme"><span></span></label>
   <input type="submit" value="Complete" />
 </form>

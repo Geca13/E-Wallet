@@ -562,7 +562,7 @@ a:hover{
         
         
 						
-		<form class="payment-card" th:action="@{/cardDeposite/{id}(id=${card?.id})}" th:object="${transaction}" method="post" >
+		<form class="payment-card" th:action="@{/cardDeposite/{id}(id=${card?.id})}" th:object="${deposit}" method="post" >
 		
 		<div class="bank-card__inner" style=width:100px>
 		<label class="bank-card__label bank-card__label_holder " >

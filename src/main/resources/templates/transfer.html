@@ -684,7 +684,9 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
         <div th:if="${message != null}">
      <div class="alert alert-warning">[[${message}]]</div>
     </div>
-        
+        <div th:if="${param.userNotFound}">
+     <div class="alert alert-info">We don't have user with that email in our database , please check your contact email and try again !!!</div>
+    </div>
         
         
        <div class="card w-75" style="height: 40rem; margin-top:60px; margin-left:1px" >
@@ -695,7 +697,7 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
       
   <h1>Enter recipient email</h1>
 <form action="#" th:action="@{/findRecepient}" method="get">
-  <input type="text" name="email" class="question" id="nme" required autocomplete="off" />
+  <input type="email" name="email" class="question" id="nme" required autocomplete="off" />
   <label for="nme"><span></span></label>
   <input type="submit" value="Find!" />
 </form>
