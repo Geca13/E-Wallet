@@ -681,6 +681,8 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
         <!-- /.container-fluid -->
         
         <div class="container">
+        
+        
         <div th:if="${message != null}">
      <div class="alert alert-warning">[[${message}]]</div>
     </div>
@@ -697,7 +699,7 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
       
   <h1>Enter recipient email</h1>
 <form action="#" th:action="@{/findRecepient}" method="get">
-  <input type="email" name="email" class="question" id="nme" required autocomplete="off" />
+  <input type="email" name="email" class="question" id="nme" required placeholder="Enter Email:" />
   <label for="nme"><span></span></label>
   <input type="submit" value="Find!" />
 </form>

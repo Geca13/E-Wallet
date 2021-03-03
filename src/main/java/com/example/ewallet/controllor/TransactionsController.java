@@ -107,7 +107,7 @@ public class TransactionsController {
 	}
 	
 	@PostMapping("/complete/{id}")
-	public String transferComplete (Model model, @AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("transfer") GecaPayTransfer transfer) {
+	public String transferComplete (Model model, @AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("transfer") GecaPayTransfer transfer,@Param(value="currency")String currency) {
 		
 		String userEmail = userD.getUsername();
         Users user = userRepository.findByEmail(userEmail);
@@ -124,13 +124,39 @@ public class TransactionsController {
 			return "redirect:/complete/"+recipient.getId()+"?tooSmallAmount";
 		}
 		
-		if(user.getMkdBalance() < transfer.getAmount() ) {
-			return "redirect:/complete/"+recipient.getId()+"?tooHighAmount";
+		if(currency.equalsIgnoreCase("MKD")) {
+			
+			if(user.getMkdBalance() < transfer.getAmount() ) {
+				return "redirect:/complete/"+recipient.getId()+"?tooHighAmount";
+			}
+			   recipient.setMkdBalance(recipient.getMkdBalance() + transfer.getAmount());
+			   user.setMkdBalance(user.getMkdBalance() - transfer.getAmount());
+			   userRepository.save(user);
+			   userRepository.save(recipient);
 		}
-		recipient.setMkdBalance(recipient.getMkdBalance() + transfer.getAmount());
-		user.setMkdBalance(user.getMkdBalance() - transfer.getAmount());
-		userRepository.save(user);
-		userRepository.save(recipient);
+		
+        if(currency.equalsIgnoreCase("USD")) {
+			
+			if(user.getUsdBalance() < transfer.getAmount() ) {
+				return "redirect:/complete/"+recipient.getId()+"?tooHighAmount";
+			}
+			   recipient.setUsdBalance(recipient.getUsdBalance() + transfer.getAmount());
+			   user.setMkdBalance(user.getUsdBalance() - transfer.getAmount());
+			   userRepository.save(user);
+			   userRepository.save(recipient);
+		}
+        
+        if(currency.equalsIgnoreCase("EUR")) {
+			
+			if(user.getEurBalance() < transfer.getAmount() ) {
+				return "redirect:/complete/"+recipient.getId()+"?tooHighAmount";
+			}
+			   recipient.setEurBalance(recipient.getEurBalance() + transfer.getAmount());
+			   user.setMkdBalance(user.getEurBalance() - transfer.getAmount());
+			   userRepository.save(user);
+			   userRepository.save(recipient);
+		}
+        
 		gptRepository.save(newTransfer);
 		return "redirect:/";
 		
