@@ -57,6 +57,9 @@ public class Users {
 	@ManyToMany
 	private List<CreditCard> card;
 	
+	@ManyToMany
+	private List<BankAccount> accounts;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate birthDate;
 	

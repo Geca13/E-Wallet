@@ -12,14 +12,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.ewallet.entity.BankAccount;
 import com.example.ewallet.entity.CreditCard;
 import com.example.ewallet.entity.Deposit;
 import com.example.ewallet.entity.GecaPayTransfer;
 import com.example.ewallet.entity.Users;
+import com.example.ewallet.entity.Withdrawl;
+import com.example.ewallet.repository.BankAccountRepository;
 import com.example.ewallet.repository.CreditCardRepository;
 import com.example.ewallet.repository.DepositRepository;
 import com.example.ewallet.repository.GecaPayTransferRepository;
 import com.example.ewallet.repository.UsersRepository;
+import com.example.ewallet.repository.WithdrawlRepository;
 
 @Service
 public class TransactionServices {
@@ -35,6 +39,12 @@ public class TransactionServices {
 	
 	@Autowired
 	GecaPayTransferRepository gptRepository;
+	
+	@Autowired
+	WithdrawlRepository withdrawlRepository;
+	
+	@Autowired
+	BankAccountRepository baRepository;
 	
 	public Deposit newDeposit ( Users user,@PathVariable("id")Integer id, @ModelAttribute("transaction")Deposit deposit,
 			  String month, String year, String cvv) throws InvalidCardException {
@@ -68,5 +78,33 @@ public class TransactionServices {
 		return list;
 		
 	}
+	
+	public Withdrawl byCard (Withdrawl withdrawl, Integer id, Users user) {
+		CreditCard card = cardRepository.findById(id).get();
+		Withdrawl request = new Withdrawl();
+		request.setAmount(withdrawl.getAmount());
+		request.setTime(LocalDateTime.now());
+		request.setUser(user);
+		request.setDescription("Withdrawl to card with number " + card.getCardNumber());
+		request.setProcessed(false);
+		
+		return withdrawlRepository.save(request);
+		 
+	}
+	
+	public Withdrawl byBankAccount (Withdrawl withdrawl, Integer id, Users user) {
+		BankAccount account = baRepository.findById(id).get();
+		Withdrawl request = new Withdrawl();
+		request.setAmount(withdrawl.getAmount());
+		request.setTime(LocalDateTime.now());
+		request.setUser(user);
+		request.setDescription("Withdrawl to an account with number " + account.getAccountNumber());
+		request.setProcessed(false);
+		
+		return withdrawlRepository.save(request);
+		 
+	}
+	
+	
 
 }
