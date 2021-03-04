@@ -505,30 +505,30 @@ select {
       <div class="alert alert-info">The minimum for transfer is 5$</div>
      </div>
      
-     <h4>Available Balances:</h4>
+     <h4>Available Balances for GecaPayTransfer:</h4>
   <div class="row">
     <div class="col-sm">
-       <div class="card" style="width: 15rem; height: 10rem;">
+       <div th:if="${user.mkdBalance > 299}" class="card" style="width: 15rem; height: 10rem;">
   <div class="card-body">
-    <h5 class="card-title"style="font-size: 1.0em;" ><b th:text="${user.mkdBalance}"></b><b>MKD</b></h5>
+    <h5 class="card-title"style="font-size: 1.0em;color:red" ><b th:text="${user.mkdBalance + ' ' }"></b><b>MKD</b></h5>
    <img src="img/mkd.webp" width="35px" style=margin-top:-6px; alt="Macedonian Flag">
    
   </div>
 </div>
     </div>
     <div class="col-sm">
-     <div class="card" style="width: 15rem;height: 10rem;">
+     <div th:if="${user.eurBalance > 4.99}" class="card" style="width: 15rem;height: 10rem;">
   <div class="card-body">
-    <h5 class="card-title" style="font-size: 1.0em;"><b th:text="${user.eurBalance}"></b><i class="fa fa-eur"  aria-hidden="true"></i></h5>
+    <h5 class="card-title" style="font-size: 1.0em;color:red"><b th:text="${user.eurBalance + ' ' }"></b><i class="fa fa-eur"  aria-hidden="true"></i></h5>
     <img src="img/eur.webp" alt="European flag">
    
   </div>
 </div>
     </div>
     <div class="col-sm">
-      <div class="card" style="width: 15rem;height: 10rem;">
+      <div th:if="${user.usdBalance > 4.99}" class="card" style="width: 15rem;height: 10rem;">
   <div class="card-body">
-    <h5 class="card-title " style="font-size: 1.0em;" ><b th:text="${user.usdBalance}"></b><i class="fa fa-usd"  aria-hidden="true"></i></h5>
+    <h5 class="card-title " style="font-size: 1.0em;color:red" ><b th:text="${user.usdBalance + ' ' }"></b><i class="fa fa-usd"  aria-hidden="true"></i></h5>
 <img src="img/usa.webp" alt="American flag">  
   </div>
 </div>
@@ -549,9 +549,9 @@ select {
     <div class="select question">
   <select name="currency" id="slct">
     
-    <option value="MKD">MKD</option>
-    <option value="USD">USD</option>
-    <option value="EUR">EUR</option>
+    <option th:if="${user.mkdBalance > 299}" value="MKD">MKD</option>
+    <option th:if="${user.usdBalance > 4.99}" value="USD">USD</option>
+    <option th:if="${user.eurBalance > 4.99}" value="EUR">EUR</option>
   </select>
 </div>
 </div>

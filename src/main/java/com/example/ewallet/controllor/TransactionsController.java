@@ -1,6 +1,7 @@
 package com.example.ewallet.controllor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -78,6 +79,8 @@ public class TransactionsController {
 		String userEmail = userD.getUsername();
         Users user = userRepository.findByEmail(userEmail);
         model.addAttribute("user", user);
+        List<Users> contacts = services.contacts(user);
+        model.addAttribute("contacts",contacts);
         
 		return "transfer";
 	}
@@ -89,6 +92,14 @@ public class TransactionsController {
 		 if(recipient == null) {
 			 return "redirect:/transferPage?userNotFound";
 		 }
+        
+		return "redirect:/complete/" + recipient.getId() ;
+	}
+	
+	@GetMapping("/findByContact/{id}")
+	public String findRecipientByContact(@PathVariable("id")Integer id) {
+		
+		Users recipient = userRepository.findById(id).get();
         
 		return "redirect:/complete/" + recipient.getId() ;
 	}
@@ -119,10 +130,6 @@ public class TransactionsController {
         newTransfer.setTo(recipient);
         newTransfer.setFrom(user);
         newTransfer.setAmount(transfer.getAmount());
-		
-		if(transfer.getAmount() < 5 ) {
-			return "redirect:/complete/"+recipient.getId()+"?tooSmallAmount";
-		}
 		
 		if(currency.equalsIgnoreCase("MKD")) {
 			

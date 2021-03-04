@@ -694,22 +694,41 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
        <div class="card w-75" style="height: 40rem; margin-top:60px; margin-left:1px" >
         <div class="card-body">
           
-        
-        
-      
-  <h1>Enter recipient email</h1>
-<form action="#" th:action="@{/findRecepient}" method="get">
-  <input type="email" name="email" class="question" id="nme" required placeholder="Enter Email:" />
-  <label for="nme"><span></span></label>
-  <input type="submit" value="Find!" />
-</form>
+         <h1>Enter recipient email</h1>
+     <form action="#" th:action="@{/findRecepient}" method="get">
+     <input type="email" name="email" class="question" id="nme" required placeholder="Enter Email:" />
+     <label for="nme"><span></span></label>
+     <input type="submit" value="Find!" />
+    </form>
 
-        
-         
-        </div>
        </div>
+       </div>
+       
+       
+       <h3>If you have already sent to the contact it's probably in the list below:</h3>
+       
+       <div class="row">
+  <div class="col-xl-3" th:each="contact : ${contacts}">
+   <div class="card"  style="width: 20rem;  margin-top:50px;">
+    
+     <div class="card-body">
+     <div style=margin-top:20px;>
+      
+     </div>
+      <div style="overflow: hidden; margin-top:50px">
+      
+      <h3 class="" th:text="${contact.firstName + ' '+ contact.lastName}"></h3>
+      <h3 class="card-text cardfont" th:text="${contact.email}"></h3>
+        </div>
+        <a class="btn btn-primary" style="margin-top:46px; width:95%; background-color:magenta; border:none; " href="#" th:href="@{/findByContact/{id}(id=${contact?.id})}"  role="button">Send!</a>
+        
+    </div>
+   </div>
+  </div>
  
+ </div>
  
+
 </div>
 </div>
 

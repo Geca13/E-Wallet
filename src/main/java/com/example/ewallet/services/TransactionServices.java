@@ -2,6 +2,9 @@ package com.example.ewallet.services;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.ewallet.entity.CreditCard;
 import com.example.ewallet.entity.Deposit;
+import com.example.ewallet.entity.GecaPayTransfer;
 import com.example.ewallet.entity.Users;
 import com.example.ewallet.repository.CreditCardRepository;
 import com.example.ewallet.repository.DepositRepository;
@@ -49,6 +53,19 @@ public class TransactionServices {
 		user.setMkdBalance(user.getMkdBalance()+deposit.getAmount());
 		userRepository.save(user);
 		return depositRepository.save(newTransaction);
+		
+	}
+	
+	public List<Users> contacts(Users user){
+		
+		HashSet<Users> contactUsers = new HashSet<>();
+		List<GecaPayTransfer> users = gptRepository.findByFrom(user);
+		for (GecaPayTransfer gecaPayTransfer : users) {
+			contactUsers.add(gecaPayTransfer.getTo());
+		}
+		List<Users> list = new ArrayList<>(contactUsers);
+		
+		return list;
 		
 	}
 
