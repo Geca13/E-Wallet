@@ -136,7 +136,24 @@ public class TransactionsController {
 			if(user.getMkdBalance() < transfer.getAmount() ) {
 				return "redirect:/complete/"+recipient.getId()+"?tooHighAmount";
 			}
-			   recipient.setMkdBalance(recipient.getMkdBalance() + transfer.getAmount());
+			  
+			   if(transfer.getAmount() <= 13000.00) {
+			   recipient.setMkdBalance(recipient.getMkdBalance() + (transfer.getAmount() * 0.9801));
+			   }
+			   else if(transfer.getAmount() > 13000.00 && transfer.getAmount() <= 50000.00 ) {
+				   recipient.setMkdBalance(recipient.getMkdBalance() + (transfer.getAmount() * 0.9861));
+			   }
+			   else if(transfer.getAmount() > 50001.00 && transfer.getAmount() <= 125000.00 ) {
+				   recipient.setMkdBalance(recipient.getMkdBalance() + (transfer.getAmount() * 0.9901));
+			   }
+			   else if(transfer.getAmount() > 125001.00 && transfer.getAmount() <= 250000.00 ) {
+				   recipient.setMkdBalance(recipient.getMkdBalance() + (transfer.getAmount() * 0.9921));
+			   }
+			   else if(transfer.getAmount() > 250001.00) {
+				   
+				   return "redirect:/complete/"+recipient.getId()+"?tooHighAmount2";
+			   }
+			   
 			   user.setMkdBalance(user.getMkdBalance() - transfer.getAmount());
 			   userRepository.save(user);
 			   userRepository.save(recipient);
@@ -147,6 +164,25 @@ public class TransactionsController {
 			if(user.getUsdBalance() < transfer.getAmount() ) {
 				return "redirect:/complete/"+recipient.getId()+"?tooHighAmount";
 			}
+			
+			if(transfer.getAmount() <= 250.00) {
+				   recipient.setUsdBalance(recipient.getUsdBalance() + (transfer.getAmount() * 0.9801));
+				   }
+				   else if(transfer.getAmount() > 250.00 && transfer.getAmount() <= 999.99 ) {
+					   recipient.setUsdBalance(recipient.getUsdBalance() + (transfer.getAmount() * 0.9861));
+				   }
+				   else if(transfer.getAmount() > 999.99 && transfer.getAmount() <= 2500.00 ) {
+					   recipient.setUsdBalance(recipient.getUsdBalance() + (transfer.getAmount() * 0.9901));
+				   }
+				   else if(transfer.getAmount() > 2501.00 && transfer.getAmount() <= 5000.00 ) {
+					   recipient.setUsdBalance(recipient.getUsdBalance() + (transfer.getAmount() * 0.9921));
+				   }
+				   else if(transfer.getAmount() > 5000.00) {
+					   
+					   return "redirect:/complete/"+recipient.getId()+"?tooHighAmount2";
+				   }
+			
+			
 			   recipient.setUsdBalance(recipient.getUsdBalance() + transfer.getAmount());
 			   user.setMkdBalance(user.getUsdBalance() - transfer.getAmount());
 			   userRepository.save(user);
@@ -158,6 +194,25 @@ public class TransactionsController {
 			if(user.getEurBalance() < transfer.getAmount() ) {
 				return "redirect:/complete/"+recipient.getId()+"?tooHighAmount";
 			}
+			
+			if(transfer.getAmount() <= 230.00) {
+				   recipient.setEurBalance(recipient.getEurBalance() + (transfer.getAmount() * 0.9801));
+				   }
+				   else if(transfer.getAmount() > 230.00 && transfer.getAmount() <= 899.99 ) {
+					   recipient.setEurBalance(recipient.getEurBalance() + (transfer.getAmount() * 0.9861));
+				   }
+				   else if(transfer.getAmount() > 899.99 && transfer.getAmount() <= 2300.00 ) {
+					   recipient.setEurBalance(recipient.getEurBalance() + (transfer.getAmount() * 0.9901));
+				   }
+				   else if(transfer.getAmount() > 2301.00 && transfer.getAmount() <= 4600.00 ) {
+					   recipient.setEurBalance(recipient.getEurBalance() + (transfer.getAmount() * 0.9921));
+				   }
+				   else if(transfer.getAmount() > 4600.00) {
+					   
+					   return "redirect:/complete/"+recipient.getId()+"?tooHighAmount2";
+				   }
+			
+			
 			   recipient.setEurBalance(recipient.getEurBalance() + transfer.getAmount());
 			   user.setMkdBalance(user.getEurBalance() - transfer.getAmount());
 			   userRepository.save(user);

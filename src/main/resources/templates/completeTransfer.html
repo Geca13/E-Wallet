@@ -501,6 +501,9 @@ select {
         <div th:if="${param.tooHighAmount}">
       <div class="alert alert-info">You don't have that much funds on your account.</div>
      </div>
+     <div th:if="${param.tooHighAmount2}">
+      <div class="alert alert-info">The sum you entered is too high and not allowed for one transaction .</div>
+     </div>
      <div th:if="${param.tooSmallAmount}">
       <div class="alert alert-info">The minimum for transfer is 5$</div>
      </div>
