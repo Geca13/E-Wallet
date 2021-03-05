@@ -82,12 +82,13 @@ public class TransactionServices {
 	public Withdrawl byCard (Withdrawl withdrawl, Integer id, Users user) {
 		CreditCard card = cardRepository.findById(id).get();
 		Withdrawl request = new Withdrawl();
-		request.setAmount(withdrawl.getAmount());
+		request.setAmount(withdrawl.getAmount() * 0.935);
 		request.setTime(LocalDateTime.now());
 		request.setUser(user);
 		request.setDescription("Withdrawl to card with number " + card.getCardNumber());
 		request.setProcessed(false);
-		
+		user.setUsdBalance(user.getUsdBalance()-withdrawl.getAmount());
+		userRepository.save(user);
 		return withdrawlRepository.save(request);
 		 
 	}

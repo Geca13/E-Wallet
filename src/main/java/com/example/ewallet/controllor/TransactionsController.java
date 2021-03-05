@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.ewallet.entity.CreditCard;
 import com.example.ewallet.entity.Deposit;
 import com.example.ewallet.entity.GecaPayTransfer;
 import com.example.ewallet.entity.Users;
+import com.example.ewallet.entity.Withdrawl;
 import com.example.ewallet.repository.CreditCardRepository;
 import com.example.ewallet.repository.DepositRepository;
 import com.example.ewallet.repository.GecaPayTransferRepository;
@@ -223,5 +225,35 @@ public class TransactionsController {
 		return "redirect:/";
 		
 	}
+	
+	@GetMapping("/byCard/{id}")
+	public String withdrawlByCard(Model model,@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("withdrawl")Withdrawl withdrawl ) {
+		String userEmail = userD.getUsername();
+        Users user = userRepository.findByEmail(userEmail);
+        CreditCard card = cardRepository.findById(id).get();
+        model.addAttribute("user", user);
+        model.addAttribute("card", card);
+        model.addAttribute("withdrawl", new Withdrawl());
+		Double maximumSum = user.getUsdBalance() * 0.935;
+		model.addAttribute("maximumSum", maximumSum);
+		return "cardWithDrawl";
+		
+	}
 
+	@PostMapping("/byCard/{id}")
+	public String completeWithdrawlByCard(@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("withdrawl")Withdrawl withdrawl ) {
+		String userEmail = userD.getUsername();
+        Users user = userRepository.findByEmail(userEmail);
+        if(withdrawl.getAmount()<20.00) {
+			return "redirect:/byCard/"+id+"?minError";
+		}
+		if(withdrawl.getAmount()>1000.00) {
+			return "redirect:/byCard/"+id+"?maxError";
+		}
+		services.byCard(withdrawl, id, user);
+		
+		
+		return "redirect:/";
+
+	}
 }
