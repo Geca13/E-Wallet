@@ -96,12 +96,13 @@ public class TransactionServices {
 	public Withdrawl byBankAccount (Withdrawl withdrawl, Integer id, Users user) {
 		BankAccount account = baRepository.findById(id).get();
 		Withdrawl request = new Withdrawl();
-		request.setAmount(withdrawl.getAmount());
+		request.setAmount((withdrawl.getAmount())-3.5 * 0.97);
 		request.setTime(LocalDateTime.now());
 		request.setUser(user);
 		request.setDescription("Withdrawl to an account with number " + account.getAccountNumber());
 		request.setProcessed(false);
-		
+		user.setEurBalance(user.getEurBalance()-withdrawl.getAmount());
+		userRepository.save(user);
 		return withdrawlRepository.save(request);
 		 
 	}

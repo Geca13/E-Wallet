@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.ewallet.entity.BankAccount;
 import com.example.ewallet.entity.CreditCard;
 import com.example.ewallet.entity.Deposit;
 import com.example.ewallet.entity.GecaPayTransfer;
 import com.example.ewallet.entity.Users;
 import com.example.ewallet.entity.Withdrawl;
+import com.example.ewallet.repository.BankAccountRepository;
 import com.example.ewallet.repository.CreditCardRepository;
 import com.example.ewallet.repository.DepositRepository;
 import com.example.ewallet.repository.GecaPayTransferRepository;
@@ -43,6 +45,9 @@ public class TransactionsController {
 	
 	@Autowired
 	GecaPayTransferRepository gptRepository;
+	
+	@Autowired
+	BankAccountRepository baRepository;
 	
 	
 	@GetMapping("/cardDeposite/{id}")
@@ -227,7 +232,7 @@ public class TransactionsController {
 	}
 	
 	@GetMapping("/byCard/{id}")
-	public String withdrawlByCard(Model model,@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("withdrawl")Withdrawl withdrawl ) {
+	public String withdrawlToCard(Model model,@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("withdrawl")Withdrawl withdrawl ) {
 		String userEmail = userD.getUsername();
         Users user = userRepository.findByEmail(userEmail);
         CreditCard card = cardRepository.findById(id).get();
@@ -241,7 +246,7 @@ public class TransactionsController {
 	}
 
 	@PostMapping("/byCard/{id}")
-	public String completeWithdrawlByCard(@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("withdrawl")Withdrawl withdrawl ) {
+	public String completeWithdrawlToCard(@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("withdrawl")Withdrawl withdrawl ) {
 		String userEmail = userD.getUsername();
         Users user = userRepository.findByEmail(userEmail);
         if(withdrawl.getAmount()<20.00) {
@@ -250,10 +255,49 @@ public class TransactionsController {
 		if(withdrawl.getAmount()>1000.00) {
 			return "redirect:/byCard/"+id+"?maxError";
 		}
+		if(withdrawl.getAmount()>user.getUsdBalance()) {
+			return "redirect:/byCard/"+id+"?invalidAmount";
+		}
+		
+		
 		services.byCard(withdrawl, id, user);
-		
-		
-		return "redirect:/";
+	     return "redirect:/";
 
 	}
+	
+	@GetMapping("/byBank/{id}")
+	public String withdrawlToBank(Model model,@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id) {
+		
+		String userEmail = userD.getUsername();
+        Users user = userRepository.findByEmail(userEmail);
+        BankAccount account = baRepository.findById(id).get();
+        model.addAttribute("user", user);
+        model.addAttribute("account", account);
+        model.addAttribute("withdrawl", new Withdrawl());
+		Double maximumSum = (user.getEurBalance() -3.5) * 0.97;
+		model.addAttribute("maximumSum", maximumSum);
+		
+		return "bankWithDrawl";
+	}
+	
+	@PostMapping("/byBank/{id}")
+	public String completeWithdrawlToBank(@AuthenticationPrincipal UsersDetails userD,@PathVariable("id") Integer id,@ModelAttribute("withdrawl")Withdrawl withdrawl ) {
+		String userEmail = userD.getUsername();
+        Users user = userRepository.findByEmail(userEmail);
+        if(withdrawl.getAmount()<100.00) {
+			return "redirect:/byBank/"+id+"?minError";
+		}
+		if(withdrawl.getAmount()>5000.00) {
+			return "redirect:/byBank/"+id+"?maxError";
+		}
+		if(withdrawl.getAmount()>user.getEurBalance()) {
+			return "redirect:/byBank/"+id+"?invalidAmount";
+		}
+		
+		services.byBankAccount(withdrawl, id, user);
+		
+	     return "redirect:/";
+
+	}
+
 }

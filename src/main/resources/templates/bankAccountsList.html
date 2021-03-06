@@ -277,14 +277,15 @@ h4{
    <div class="card"  style="width: 20rem;  margin-top:50px;">
     
      <div class="card-body">
-     <div style=margin-top:20px;>
+     <div >
+     <img src="img/bank.png" width="85px" alt="Snow" >
       </div>
-      <div style="overflow: hidden; margin-top:50px">
+      <div style="overflow: hidden; margin-top:20px">
       <p  style="float: left;" class="card-text cardfont" >Ends with</p>
-      <p  class="card-text cardfont" style="float: right;" th:text="${'*' + #strings.substring(card.accountNumber,12,16)}"></p>
+      <p  class="card-text cardfont" style="float: right;" th:text="${'*' + #strings.substring(card.accountNumber,08,16)}"></p>
       
         </div>
-        <a class="btn btn-primary" style="margin-top:46px; width:95%; background-color:magenta; border:none; " href="#" th:href="@{/cardDeposite/{id}(id=${card.id})}"  role="button">Next</a>
+        <a class="btn btn-primary" style="margin-top:46px; width:95%; background-color:magenta; border:none; " href="#" th:href="@{/byBank/{id}(id=${card.id})}"  role="button">Next</a>
         
     </div>
    </div>
