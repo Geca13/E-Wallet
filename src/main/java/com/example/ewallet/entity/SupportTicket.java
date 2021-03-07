@@ -33,7 +33,7 @@ public class SupportTicket {
 	@ManyToOne
 	private Users user;
 	
-	private Boolean status;
+	private String status;
 	
 	private Boolean opened;
 	

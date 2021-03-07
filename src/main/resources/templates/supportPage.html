@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+  
+
+
+  </style>
+</head>
+<body >
+
+ 
+ <form action="#" th:action="@{/newTicket}" th:object="${ticket}" method="post" >
+ 
+    <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" th:field="*{topic}"  id="exampleFormControlSelect1">
+      <option value="">Select:</option>
+      <option value="Deposit">Deposit</option>
+      <option value="Withdrawal">Withdrawal</option>
+      <option value="Verification">Verification</option>
+      
+    </select>
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1"></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" th:name="message"  rows="3"placeholder="Type your comment here..."></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Post Comment</button>
+  </form>
+    
+    <br>
+    <br>
+    <h3>Previous messages:</h3>
+    <hr>
+    <table class="table table-striped" >
+    
+    <tr th:each="com: ${ticket.messages}">
+        
+        <td th:text="${#temporals.format(com.time, 'yyyy-MM-dd HH:mm:ss')}"></td>
+         <td th:text="${com.user?.firstName+ ' ' + com.user?.lastName}"></td>
+         <td th:text="${com.message}"></td>
+       
+      </tr>
+    
+    </table>
+ 
+ 
+
+
+<br><br><br>
+
+  
+  
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
